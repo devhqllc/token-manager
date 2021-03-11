@@ -17,17 +17,18 @@ public class JwtValidator {
     private JwtValidator() {
     }
 
-    public static int extractUserIdFromJwt() {
+    public static Integer tryExtractUserIdFromJwt() {
         AbstractAuthenticationToken authenticationToken = (AbstractAuthenticationToken) TokenManagerProperties.getSecurityContext().getAuthentication();
         SimpleKeycloakAccount details = (SimpleKeycloakAccount) authenticationToken.getDetails();
-        String value = (String) details.getKeycloakSecurityContext().getToken().getOtherClaims().get(TokenManagerProperties.getUserId());
-        if (value == null) {
+        return (Integer) details.getKeycloakSecurityContext().getToken().getOtherClaims().get(TokenManagerProperties.getUserId());
+    }
+
+    public static int extractUserIdFromJwt() {
+        Integer userId = tryExtractUserIdFromJwt();
+        if (userId == null) {
             logger.error("Requesting client is not an end user, hence token does not contain gitlab user id!");
             throw new ValidationException();
         }
-
-        int userId;
-        userId = Integer.parseInt(value);
 
         if (userId <= 0) {
             logger.error("User id may not be none positive number! API seems to be hacked! Please report this to admin");
@@ -37,6 +38,22 @@ public class JwtValidator {
         return userId;
     }
 
+    public static String getCustomerId() {
+        return (String) JwtValidator.extractValueFromJwt(TokenManagerProperties.getCustomerId());
+    }
+
+    public static Object extractValueFromJwt(String key) {
+        AbstractAuthenticationToken authenticationToken = (AbstractAuthenticationToken) TokenManagerProperties.getSecurityContext().getAuthentication();
+        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authenticationToken.getDetails();
+        return details.getKeycloakSecurityContext().getToken().getOtherClaims().get(key);
+    }
+
+    public static String getName() {
+        AbstractAuthenticationToken authenticationToken = (AbstractAuthenticationToken) TokenManagerProperties.getSecurityContext().getAuthentication();
+        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authenticationToken.getDetails();
+        return details.getKeycloakSecurityContext().getToken().getName();
+    }
+
     public static boolean isInternalUser(HttpServletRequest request) {
         return request.isUserInRole(TokenManagerProperties.getMachineRole()) || request.isUserInRole(TokenManagerProperties.getAdminRole());
     }
@@ -44,5 +61,13 @@ public class JwtValidator {
     public static boolean isExternalUser(HttpServletRequest request) {
         return !(request.isUserInRole(TokenManagerProperties.getMachineRole()) || request.isUserInRole(TokenManagerProperties.getAdminRole()))
                 && request.isUserInRole(TokenManagerProperties.getUserRole());
+    }
+
+    public static boolean isCustomer(HttpServletRequest request) {
+        return request.isUserInRole(TokenManagerProperties.getCustomerRole());
+    }
+
+    public static boolean isSuperCustomer(HttpServletRequest request) {
+        return request.isUserInRole(TokenManagerProperties.getSuperCustomerRole());
     }
 }

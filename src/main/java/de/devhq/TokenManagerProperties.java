@@ -14,6 +14,9 @@ public class TokenManagerProperties {
     private static String adminRole;
     private static String userRole;
     private static String keycloakUrl;
+    private static String customerId;
+    private static String customerRole;
+    private static String superCustomerRole;
     private static SecurityContext securityContext;
     private static RestTemplate restTemplate;
 
@@ -23,6 +26,7 @@ public class TokenManagerProperties {
     public static String getUserId() {
         return userId;
     }
+
 
     public static String getMachineRole() {
         return machineRole;
@@ -40,6 +44,18 @@ public class TokenManagerProperties {
         return keycloakUrl;
     }
 
+    public static String getCustomerId() {
+        return customerId;
+    }
+
+    public static String getCustomerRole() {
+        return customerRole;
+    }
+
+    public static String getSuperCustomerRole() {
+        return superCustomerRole;
+    }
+
     public static SecurityContext getSecurityContext() {
         return securityContext;
     }
@@ -53,15 +69,18 @@ public class TokenManagerProperties {
         machineRole = getParameter(prop.getProperty("de.devhq.role.machine"));
         adminRole = getParameter(prop.getProperty("de.devhq.role.admin"));
         userRole = getParameter(prop.getProperty("de.devhq.role.user"));
-        userId = getParameter(prop.getProperty("de.devhq.user.id"));
+        userId = getParameter(prop.getProperty("de.devhq.gitlab.user.id"));
         keycloakUrl = getParameter(prop.getProperty("de.devhq.keycloak.url"));
+        customerId = getParameter(prop.getProperty("de.devhq.customer.id"));
+        customerRole = getParameter(prop.getProperty("de.devhq.role.customer"));
+        superCustomerRole = getParameter(prop.getProperty("de.devhq.role.supercustomer"));
         restTemplate = new RestTemplate();
     }
 
-    private static String getParameter(String property){
-        if(property.startsWith("${")){
-           String secondSide=property.split(":", 2)[1];
-            return secondSide.substring(0,secondSide.length()-1);
+    private static String getParameter(String property) {
+        if (property.startsWith("${")) {
+            String secondSide = property.split(":", 2)[1];
+            return secondSide.substring(0, secondSide.length() - 1);
         }
         return property;
     }

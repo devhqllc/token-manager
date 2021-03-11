@@ -130,4 +130,19 @@ public class JwtValidatorTest {
         when(httpServletRequest.isUserInRole("USER_ROLE")).thenReturn(true);
         assertTrue(JwtValidator.isExternalUser(httpServletRequest));
     }
+
+
+    @Test
+    public void isCustomer() {
+        HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
+        when(httpServletRequest.isUserInRole("DEVHQ_CUSTOMER_ROLE")).thenReturn(true);
+        assertTrue(JwtValidator.isCustomer(httpServletRequest));
+    }
+
+    @Test
+    public void isSuperCustomer() {
+        HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
+        when(httpServletRequest.isUserInRole("DEVHQ_SUPERCUSTOMER_ROLE")).thenReturn(true);
+        assertTrue(JwtValidator.isSuperCustomer(httpServletRequest));
+    }
 }
