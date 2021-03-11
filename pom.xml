@@ -11,7 +11,7 @@
         <artifactId>oss-parent</artifactId>
         <version>9</version>
     </parent>
-    <groupId>io.github.oktayalizada</groupId>
+    <groupId>de.devhq</groupId>
     <artifactId>token-manager</artifactId>
     <version>1.1.1</version>
 
@@ -202,9 +202,9 @@
         </profile>
     </profiles>
     <scm>
-        <connection>scm:git:https://github.com/oktayalizada/token-manager</connection>
-        <developerConnection>scm:git:git@github.com:oktayalizada/token-manager.git</developerConnection>
-        <url>https://github.com/oktayalizada/token-manager</url>
+        <connection>scm:git:https://github.com/devhqllc/token-manager</connection>
+        <developerConnection>scm:git:git@github.com:devhqllc/token-manager.git</developerConnection>
+        <url>https://github.com/devhqllc/token-manager</url>
         <tag>HEAD</tag>
     </scm>
 </project>
