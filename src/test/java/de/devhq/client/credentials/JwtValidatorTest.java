@@ -35,6 +35,8 @@ public class JwtValidatorTest {
         ReflectionTestUtils.setField(tokenManagerProperties, "machineRole", "MACHINE_ROLE");
         ReflectionTestUtils.setField(tokenManagerProperties, "adminRole", "ADMIN_ROLE");
         ReflectionTestUtils.setField(tokenManagerProperties, "userRole", "USER_ROLE");
+        ReflectionTestUtils.setField(tokenManagerProperties, "customerRole", "DEVHQ_CUSTOMER_ROLE");
+        ReflectionTestUtils.setField(tokenManagerProperties, "superCustomerRole", "DEVHQ_SUPERCUSTOMER_ROLE");
         ReflectionTestUtils.setField(tokenManagerProperties, "securityContext", securityContext);
 
     }
@@ -57,7 +59,7 @@ public class JwtValidatorTest {
         AbstractAuthenticationToken authentication = Mockito.mock(AbstractAuthenticationToken.class);
         SimpleKeycloakAccount simpleKeycloakAccount = mock(SimpleKeycloakAccount.class);
         AccessToken accessToken = new AccessToken();
-        accessToken.setOtherClaims("gitlab_user_id", "1");
+        accessToken.setOtherClaims("gitlab_user_id", 1);
         RefreshableKeycloakSecurityContext refreshableKeycloakSecurityContext = mock(RefreshableKeycloakSecurityContext.class);
         when(securityContext.getAuthentication()).thenReturn(authentication);
         when(authentication.getDetails()).thenReturn(simpleKeycloakAccount);
@@ -71,7 +73,7 @@ public class JwtValidatorTest {
         AbstractAuthenticationToken authentication = Mockito.mock(AbstractAuthenticationToken.class);
         SimpleKeycloakAccount simpleKeycloakAccount = mock(SimpleKeycloakAccount.class);
         AccessToken accessToken = new AccessToken();
-        accessToken.setOtherClaims("gitlab_user_id", "0");
+        accessToken.setOtherClaims("gitlab_user_id", 0);
         RefreshableKeycloakSecurityContext refreshableKeycloakSecurityContext = mock(RefreshableKeycloakSecurityContext.class);
         when(securityContext.getAuthentication()).thenReturn(authentication);
         when(authentication.getDetails()).thenReturn(simpleKeycloakAccount);
