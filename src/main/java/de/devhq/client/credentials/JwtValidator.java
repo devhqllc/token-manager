@@ -20,7 +20,10 @@ public class JwtValidator {
     public static Integer tryExtractUserIdFromJwt() {
         AbstractAuthenticationToken authenticationToken = (AbstractAuthenticationToken) TokenManagerProperties.getSecurityContext().getAuthentication();
         SimpleKeycloakAccount details = (SimpleKeycloakAccount) authenticationToken.getDetails();
-        return (Integer) details.getKeycloakSecurityContext().getToken().getOtherClaims().get(TokenManagerProperties.getUserId());
+        Object value = details.getKeycloakSecurityContext().getToken().getOtherClaims().get(TokenManagerProperties.getUserId());
+        if (value != null)
+            return Integer.valueOf((String)value);
+        return null;
     }
 
     public static int extractUserIdFromJwt() {
