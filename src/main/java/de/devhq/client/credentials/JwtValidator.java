@@ -83,7 +83,8 @@ public class JwtValidator {
 
     public boolean isExternalUser(HttpServletRequest request) {
         return !(request.isUserInRole(roleMachine) || request.isUserInRole(roleAdmin))
-                && request.isUserInRole(roleUser);
+                && (request.isUserInRole(roleUser) || request.isUserInRole(roleSuperCustomer)
+                || request.isUserInRole(roleCustomer));
     }
 
     public boolean isCustomer(HttpServletRequest request) {
@@ -92,5 +93,36 @@ public class JwtValidator {
 
     public boolean isSuperCustomer(HttpServletRequest request) {
         return request.isUserInRole(roleSuperCustomer);
+    }
+
+    public boolean isChmOrCore(HttpServletRequest request) {
+        return isInternalUser(request);
+    }
+
+    public boolean isCustomerOrSuperCustomer(HttpServletRequest request) {
+        return isCustomer(request) || isSuperCustomer(request);
+    }
+
+    public String getCustomerId(HttpServletRequest request) {
+        String customerId = getCustomerId();
+
+        if (customerId == null && isChmOrCore(request)) {
+            return "devhq";
+        } else if (customerId == null && isExternalUser(request)) {
+            return "user";
+        } else if (customerId == null && isCustomerOrSuperCustomer(request)) {
+            logger.error("Requesting client is not an end user, hence token does not contain customer id!");
+            throw new ValidationException();
+        }
+
+        return customerId;
+    }
+
+    public int getUserId(HttpServletRequest request) {
+        if (isChmOrCore(request)) {
+            return 0;
+        }
+
+        return extractUserIdFromJwt();
     }
 }

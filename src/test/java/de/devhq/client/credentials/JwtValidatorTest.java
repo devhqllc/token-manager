@@ -1,27 +1,18 @@
 package de.devhq.client.credentials;
 
-import static org.mockito.Mockito.mock;
-
 //@RunWith(MockitoJUnitRunner.class)
 public class JwtValidatorTest {
 
 //    @Mock
-//    TokenManagerProperties tokenManagerProperties;
 //    SecurityContext securityContext;
-//
+//    JwtValidator jwtValidator;
+////
 //    @Before
 //    public void setUp() {
 //        securityContext = Mockito.mock(SecurityContext.class);
-//        ReflectionTestUtils.setField(tokenManagerProperties, "userId", "gitlab_user_id");
-//        ReflectionTestUtils.setField(tokenManagerProperties, "machineRole", "MACHINE_ROLE");
-//        ReflectionTestUtils.setField(tokenManagerProperties, "adminRole", "ADMIN_ROLE");
-//        ReflectionTestUtils.setField(tokenManagerProperties, "userRole", "USER_ROLE");
-//        ReflectionTestUtils.setField(tokenManagerProperties, "customerRole", "DEVHQ_CUSTOMER_ROLE");
-//        ReflectionTestUtils.setField(tokenManagerProperties, "superCustomerRole", "DEVHQ_SUPERCUSTOMER_ROLE");
-//        ReflectionTestUtils.setField(tokenManagerProperties, "securityContext", securityContext);
-//
+//        jwtValidator = new JwtValidator();
 //    }
-//
+////
 //    @Test(expected = ValidationException.class)
 //    public void extractUserIdFromJwtWithNullClaims() {
 //        AbstractAuthenticationToken authentication = Mockito.mock(AbstractAuthenticationToken.class);
@@ -32,7 +23,7 @@ public class JwtValidatorTest {
 //        when(authentication.getDetails()).thenReturn(simpleKeycloakAccount);
 //        when(simpleKeycloakAccount.getKeycloakSecurityContext()).thenReturn(refreshableKeycloakSecurityContext);
 //        when(refreshableKeycloakSecurityContext.getToken()).thenReturn(accessToken);
-//        JwtValidator.extractUserIdFromJwt();
+//        jwtValidator.extractUserIdFromJwt();
 //    }
 //
 //    @Test
