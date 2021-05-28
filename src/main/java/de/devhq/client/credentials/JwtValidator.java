@@ -70,6 +70,13 @@ public class JwtValidator {
         return details.getKeycloakSecurityContext().getToken().getOtherClaims().get(key);
     }
 
+    public String extractJwtToken() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        AbstractAuthenticationToken authenticationToken = (AbstractAuthenticationToken) context.getAuthentication();
+        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authenticationToken.getDetails();
+        return details.getKeycloakSecurityContext().getTokenString();
+    }
+
     public String getName() {
         SecurityContext context = SecurityContextHolder.getContext();
         AbstractAuthenticationToken authenticationToken = (AbstractAuthenticationToken) context.getAuthentication();
