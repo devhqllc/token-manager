@@ -1,18 +1,22 @@
 package de.devhq.client.credentials;
 
+import org.mockito.Mock;
+
 //@RunWith(MockitoJUnitRunner.class)
 public class JwtValidatorTest {
 
 //    @Mock
 //    SecurityContext securityContext;
 //    JwtValidator jwtValidator;
-////
+
+    ////
 //    @Before
 //    public void setUp() {
-//        securityContext = Mockito.mock(SecurityContext.class);
+//        securityContext = mock(SecurityContext.class);
 //        jwtValidator = new JwtValidator();
 //    }
-////
+
+    ////
 //    @Test(expected = ValidationException.class)
 //    public void extractUserIdFromJwtWithNullClaims() {
 //        AbstractAuthenticationToken authentication = Mockito.mock(AbstractAuthenticationToken.class);
@@ -28,16 +32,12 @@ public class JwtValidatorTest {
 //
 //    @Test
 //    public void extractUserIdFromJwt() {
-//        AbstractAuthenticationToken authentication = Mockito.mock(AbstractAuthenticationToken.class);
+//        AbstractAuthenticationToken authentication = mock(AbstractAuthenticationToken.class);
 //        SimpleKeycloakAccount simpleKeycloakAccount = mock(SimpleKeycloakAccount.class);
-//        AccessToken accessToken = new AccessToken();
-//        accessToken.setOtherClaims("gitlab_user_id", "1");
-//        RefreshableKeycloakSecurityContext refreshableKeycloakSecurityContext = mock(RefreshableKeycloakSecurityContext.class);
-//        when(securityContext.getAuthentication()).thenReturn(authentication);
-//        when(authentication.getDetails()).thenReturn(simpleKeycloakAccount);
-//        when(simpleKeycloakAccount.getKeycloakSecurityContext()).thenReturn(refreshableKeycloakSecurityContext);
-//        when(refreshableKeycloakSecurityContext.getToken()).thenReturn(accessToken);
-//        assertEquals(1, JwtValidator.extractUserIdFromJwt());
+//        HttpServletRequest request = mock(HttpServletRequest.class);
+//
+//        when(jwtValidator.extractStringFromJwt(anyString())).thenReturn("1");
+//        assertEquals(1, jwtValidator.getUserId(request));
 //    }
 //
 //    @Test(expected = ValidationException.class)
