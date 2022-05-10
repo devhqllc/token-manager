@@ -1,7 +1,7 @@
-package de.devhq.client.credentials;
+package devhq.io.client.credentials;
 
 
-import de.devhq.model.TokenCollection;
+import devhq.io.model.TokenCollection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;

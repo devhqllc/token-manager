@@ -1,4 +1,4 @@
-package de.devhq.model;
+package devhq.io.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
