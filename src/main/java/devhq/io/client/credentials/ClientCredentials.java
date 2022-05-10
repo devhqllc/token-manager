@@ -1,8 +1,7 @@
-package de.devhq.client.credentials;
+package devhq.io.client.credentials;
 
 
-import de.devhq.model.TokenCollection;
-import org.springframework.beans.factory.annotation.Value;
+import devhq.io.model.TokenCollection;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -14,13 +13,12 @@ import java.util.Objects;
 
 public class ClientCredentials {
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+    private final TokenManagerConfig tokenManagerConfig;
 
-    @Value("${de.devhq.keycloak.url}")
-    private String keycloakUrl;
-
-    public ClientCredentials(RestTemplate restTemplate) {
+    public ClientCredentials(RestTemplate restTemplate, TokenManagerConfig tokenManagerConfig) {
         this.restTemplate = restTemplate;
+        this.tokenManagerConfig = tokenManagerConfig;
     }
 
     public HttpHeaders getHttpHeaders(String clientId, String clientSecret) throws IOException {
@@ -52,7 +50,7 @@ public class ClientCredentials {
         map.add("client_id", clientId);
         map.add("client_secret", clientSecret);
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(map, headers);
-        return restTemplate.exchange(keycloakUrl, HttpMethod.POST, entity, TokenCollection.class);
+        return restTemplate.exchange(tokenManagerConfig.getKeycloakUrl(), HttpMethod.POST, entity, TokenCollection.class);
     }
 
 }
