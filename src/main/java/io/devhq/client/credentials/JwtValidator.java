@@ -1,4 +1,4 @@
-package devhq.io.client.credentials;
+package io.devhq.client.credentials;
 
 import org.keycloak.TokenVerifier;
 import org.keycloak.adapters.springsecurity.account.SimpleKeycloakAccount;

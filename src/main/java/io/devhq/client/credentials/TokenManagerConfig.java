@@ -1,4 +1,4 @@
-package devhq.io.client.credentials;
+package io.devhq.client.credentials;
 
 import lombok.Getter;
 import lombok.Setter;

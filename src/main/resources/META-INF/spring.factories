@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-devhq.io.TokenManagerAutoConfiguration
+io.devhq.TokenManagerAutoConfiguration

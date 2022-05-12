@@ -1,8 +1,8 @@
-package devhq.io;
+package io.devhq;
 
-import devhq.io.client.credentials.ClientCredentials;
-import devhq.io.client.credentials.JwtValidator;
-import devhq.io.client.credentials.TokenManagerConfig;
+import io.devhq.client.credentials.ClientCredentials;
+import io.devhq.client.credentials.JwtValidator;
+import io.devhq.client.credentials.TokenManagerConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
