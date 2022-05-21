@@ -1,7 +1,5 @@
 package io.devhq.client.credentials;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.keycloak.TokenVerifier;
 import org.keycloak.adapters.springsecurity.account.SimpleKeycloakAccount;
 import org.keycloak.representations.JsonWebToken;
