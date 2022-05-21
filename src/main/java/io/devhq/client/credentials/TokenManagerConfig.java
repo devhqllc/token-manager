@@ -1,11 +1,7 @@
 package io.devhq.client.credentials;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
-@Getter
-@Setter
 public class TokenManagerConfig {
 
     @Value("${devhq.jwt.attribute.user.id}")
@@ -25,6 +21,69 @@ public class TokenManagerConfig {
     @Value("${devhq.keycloak.url}")
     private String keycloakUrl;
 
+    public String getUserIdAttributeName() {
+        return userIdAttributeName;
+    }
+
+    public void setUserIdAttributeName(String userIdAttributeName) {
+        this.userIdAttributeName = userIdAttributeName;
+    }
+
+    public String getMachineRole() {
+        return machineRole;
+    }
+
+    public void setMachineRole(String machineRole) {
+        this.machineRole = machineRole;
+    }
+
+    public String getAdminRole() {
+        return adminRole;
+    }
+
+    public void setAdminRole(String adminRole) {
+        this.adminRole = adminRole;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public String getCustomerIdAttributeName() {
+        return customerIdAttributeName;
+    }
+
+    public void setCustomerIdAttributeName(String customerIdAttributeName) {
+        this.customerIdAttributeName = customerIdAttributeName;
+    }
+
+    public String getCustomerRole() {
+        return customerRole;
+    }
+
+    public void setCustomerRole(String customerRole) {
+        this.customerRole = customerRole;
+    }
+
+    public String getSuperCustomerRole() {
+        return superCustomerRole;
+    }
+
+    public void setSuperCustomerRole(String superCustomerRole) {
+        this.superCustomerRole = superCustomerRole;
+    }
+
+    public String getKeycloakUrl() {
+        return keycloakUrl;
+    }
+
+    public void setKeycloakUrl(String keycloakUrl) {
+        this.keycloakUrl = keycloakUrl;
+    }
 
     public static final String DEVELOPER_CUSTOMER_ID = "user";
     public static final String DEVHQ_ADMIN_CUSTOMER_ID = "devhq";

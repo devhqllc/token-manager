@@ -21,10 +21,11 @@ public class ClientCredentials {
         this.tokenManagerConfig = tokenManagerConfig;
     }
 
-    public HttpHeaders getHttpHeaders(String clientId, String clientSecret) throws IOException {
+
+    public HttpHeaders createBearerAuthorizationHeader(String clientId, String clientSecret) throws IOException {
         TokenCollection tokenCollection;
         HttpHeaders httpHeaders = new HttpHeaders();
-        tokenCollection = getToken(clientId, clientSecret);
+        tokenCollection = authorizeClient(clientId, clientSecret);
         if (Objects.requireNonNull(tokenCollection.getAccessToken()).length() > 1) {
             httpHeaders.set("Authorization", "Bearer " + tokenCollection.getAccessToken());
         } else {
@@ -34,7 +35,7 @@ public class ClientCredentials {
         return httpHeaders;
     }
 
-    public TokenCollection getToken(String clientId, String clientSecret) throws IOException {
+    public TokenCollection authorizeClient(String clientId, String clientSecret) throws IOException {
         ResponseEntity<TokenCollection> tokenCollectionCurrent = getTokenCollection(clientId, clientSecret);
         if (tokenCollectionCurrent.getBody() == null || tokenCollectionCurrent.getBody().getAccessToken() == null) {
             throw new AuthenticationException();
@@ -53,4 +54,7 @@ public class ClientCredentials {
         return restTemplate.exchange(tokenManagerConfig.getKeycloakUrl(), HttpMethod.POST, entity, TokenCollection.class);
     }
 
+    public TokenManagerConfig getTokenManagerConfig() {
+        return tokenManagerConfig;
+    }
 }

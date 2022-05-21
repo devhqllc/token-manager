@@ -1,7 +1,7 @@
 package io.devhq;
 
 import io.devhq.client.credentials.ClientCredentials;
-import io.devhq.client.credentials.JwtValidator;
+import io.devhq.client.credentials.JwtUtils;
 import io.devhq.client.credentials.TokenManagerConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ public class TokenManagerAutoConfiguration {
     }
 
     @Bean
-    public JwtValidator jwtValidator(TokenManagerConfig tokenManagerConfig) {
-        return new JwtValidator(tokenManagerConfig);
+    public JwtUtils jwtValidator(TokenManagerConfig tokenManagerConfig) {
+        return new JwtUtils(tokenManagerConfig);
     }
 }

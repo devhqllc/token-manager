@@ -1,11 +1,7 @@
 package io.devhq.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class TokenCollection {
 
     @JsonProperty("access_token")
@@ -44,5 +40,69 @@ public class TokenCollection {
                 ", sessionState='" + sessionState + '\'' +
                 ", scope='" + scope + '\'' +
                 '}';
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public Integer getExpiresIn() {
+        return expiresIn;
+    }
+
+    public void setExpiresIn(Integer expiresIn) {
+        this.expiresIn = expiresIn;
+    }
+
+    public Integer getRefreshExpiresIn() {
+        return refreshExpiresIn;
+    }
+
+    public void setRefreshExpiresIn(Integer refreshExpiresIn) {
+        this.refreshExpiresIn = refreshExpiresIn;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
+    }
+
+    public Integer getNotBeforePolicy() {
+        return notBeforePolicy;
+    }
+
+    public void setNotBeforePolicy(Integer notBeforePolicy) {
+        this.notBeforePolicy = notBeforePolicy;
+    }
+
+    public String getSessionState() {
+        return sessionState;
+    }
+
+    public void setSessionState(String sessionState) {
+        this.sessionState = sessionState;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 }

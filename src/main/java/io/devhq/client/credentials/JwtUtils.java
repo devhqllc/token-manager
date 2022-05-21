@@ -1,5 +1,7 @@
 package io.devhq.client.credentials;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.keycloak.TokenVerifier;
 import org.keycloak.adapters.springsecurity.account.SimpleKeycloakAccount;
 import org.keycloak.representations.JsonWebToken;
@@ -12,11 +14,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ValidationException;
 
-public class JwtValidator {
-    private static final Logger logger = LoggerFactory.getLogger(JwtValidator.class);
+public class JwtUtils {
+    private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
     private final TokenManagerConfig tokenManagerConfig;
 
-    public JwtValidator(TokenManagerConfig tokenManagerConfig) {
+    public JwtUtils(TokenManagerConfig tokenManagerConfig) {
         this.tokenManagerConfig = tokenManagerConfig;
     }
 
@@ -173,7 +175,7 @@ public class JwtValidator {
         return stringClaim;
     }
 
-    public int getUserId(HttpServletRequest request) {
+    public int getGitlabUserId(HttpServletRequest request) {
         if (isChmOrCore(request)) {
             return 0;
         }
