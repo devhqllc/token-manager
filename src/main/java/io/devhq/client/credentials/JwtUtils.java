@@ -181,4 +181,7 @@ public class JwtUtils {
         return extractUserIdFromJwt();
     }
 
+    public TokenManagerConfig getTokenManagerConfig() {
+        return tokenManagerConfig;
+    }
 }

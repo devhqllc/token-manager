@@ -7,7 +7,7 @@
     </properties>
     <groupId>io.devhq</groupId>
     <artifactId>token-manager</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
 
     <licenses>
         <license>
